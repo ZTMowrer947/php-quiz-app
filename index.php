@@ -13,7 +13,7 @@ include "inc/quiz.php";
 </head>
 <body>
     <div class="container">
-        <?php var_dump($_SESSION); ?>
+        <?php var_dump($answers); ?>
         <div id="quiz-box">
             <p class="breadcrumbs">Question # of #</p>
             <p class="quiz">What is 54 + 71?</p>
