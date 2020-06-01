@@ -18,7 +18,10 @@ include "inc/quiz.php";
                 <p class="toast"><?= $toast ?></p>
             <?php } ?>
             <?php if ($showScore) { ?>
-                <!-- TODO: Show score page -->
+                <p class="quiz score">
+                    Your final score is <?= $_SESSION["total_correct"] ?> out of <?= $totalQuestions ?>.
+                </p>
+                <a href="index.php" class="btn">Play Again</a>
             <?php } else { ?>
                     <p class="breadcrumbs">Question <?= count($_SESSION["used_indices"]) ?> of <?= $totalQuestions ?></p>
                     <p class="quiz">What is <?= $question["leftAdder"] ?> + <?= $question["rightAdder"] ?>?</p>
