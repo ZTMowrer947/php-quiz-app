@@ -52,8 +52,8 @@ if (!isset($_SESSION["used_indices"])) {
 
 // If we have displayed all the questions,
 if (count($_SESSION["used_indices"]) === $totalQuestions) {
-    // Reset used indices session variable to empty array
-    $_SESSION["used_indices"] = [];
+    // Clear session data
+    session_destroy();
 
     // Indicate that we need to show the score page
     $showScore = true;
