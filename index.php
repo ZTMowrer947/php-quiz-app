@@ -1,3 +1,7 @@
+<?php
+// Include quiz data
+include "inc/quiz.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +13,7 @@
 </head>
 <body>
     <div class="container">
+        <?php var_dump($questions); ?>
         <div id="quiz-box">
             <p class="breadcrumbs">Question # of #</p>
             <p class="quiz">What is 54 + 71?</p>
