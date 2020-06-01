@@ -1,19 +1,24 @@
 <?php
 // Start the session
+session_start();
 
-// Include questions from the questions.php file
+// Include question data
 include "questions.php";
 
-// Make a variable to hold the total number of questions to ask
+// Declare variable to hold the total number of questions to ask
+$totalQuestions = 10;
 
-// Make a variable to hold the toast message and set it to an empty string
+// Declare variable to hold the toast message, initialized to an empty string
+$toast = "";
 
-// Make a variable to determine if the score will be shown or not. Set it to false.
+// Declare variable to determine if the score will be shown or not, initialized set to false
+$showScore = false;
 
-// Make a variable to hold a random index. Assign null to it.
+// Declare variable to hold a random index, initialized to null
+$index = null;
 
-// Make a variable to hold the current question. Assign null to it.
-
+// Declare variable to hold the current question, initialized to null
+$question = null;
 
 /*
     If the server request was of type POST
