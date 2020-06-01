@@ -6,7 +6,7 @@ session_start();
 include "questions.php";
 
 // Declare variable to hold the total number of questions to ask
-$totalQuestions = 10;
+$totalQuestions = count($questions);
 
 // Declare variable to hold the toast message, initialized to an empty string
 $toast = "";
@@ -30,13 +30,14 @@ $question = null;
             1. Assign a bummer message to the toast variable.
 */
 
-/*
-    Check if a session variable has ever been set/created to hold the indexes of questions already asked.
-    If it has NOT: 
-        1. Create a session variable to hold used indexes and initialize it to an empty array.
-        2. Set the show score variable to false.
-*/
+// If we haven't set a session variable for determining which indices of questions we have already asked,
+if (!isset($_SESSION['used_indices'])) {
+    // Initialize it to an empty array
+    $_SESSION['used_indices'] = [];
 
+    // Set show score variable to false
+    $showScore = false;
+}
 
 /*
   If the number of used indexes in our session variable is equal to the total number of questions
