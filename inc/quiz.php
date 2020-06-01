@@ -31,11 +31,12 @@ $question = null;
 */
 // If the server request was of type POST,
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Get the user's answer
-    $userAnswer = filter_input(INPUT_POST, "answer", FILTER_SANITIZE_NUMBER_INT);
+    // Get the user's answer and the index of the previous question
+    $prevIndex = (int)filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
+    $userAnswer = (int)filter_input(INPUT_POST, "answer", FILTER_SANITIZE_NUMBER_INT);
 
     // If the user's answer is correct,
-    if ($userAnswer === $question["correctAnswer"]) {
+    if ($userAnswer === $questions[$prevIndex]["correctAnswer"]) {
         // Set toast to congratulatory message
         $toast = "Correct!";
 
@@ -80,7 +81,6 @@ if (!isset($_SESSION["used_indices"])) {
         h. Shuffle the array from step g.
 */
 // If we have displayed all the questions,
-var_dump(count($_SESSION["used_indices"]));
 if (count($_SESSION["used_indices"]) === $totalQuestions) {
     // Reset used indices session variable to empty array
     $_SESSION["used_indices"] = [];
