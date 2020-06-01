@@ -13,16 +13,20 @@ include "inc/quiz.php";
 </head>
 <body>
     <div class="container">
-        <?php var_dump($answers); ?>
         <div id="quiz-box">
-            <p class="breadcrumbs">Question # of #</p>
-            <p class="quiz">What is 54 + 71?</p>
-            <form action="index.php" method="post">
-                <input type="hidden" name="id" value="0" />
-                <input type="submit" class="btn" name="answer" value="135" />
-                <input type="submit" class="btn" name="answer" value="125" />
-                <input type="submit" class="btn" name="answer" value="115" />
-            </form>
+            <?php var_dump($toast); ?>
+            <?php if ($showScore) { ?>
+                <!-- TODO: Show score page -->
+            <?php } else { ?>
+                    <p class="breadcrumbs">Question <?= count($_SESSION["used_indices"]) ?> of <?= $totalQuestions ?></p>
+                    <p class="quiz">What is <?= $question["leftAdder"] ?> + <?= $question["rightAdder"] ?>?</p>
+                    <form action="index.php" method="post">
+                        <input type="hidden" name="id" value="<?= $index ?>" />
+                        <?php foreach ($answers as $answer) { ?>
+                            <input type="submit" class="btn" name="answer" value="<?= $answer ?>" />
+                        <?php } ?>
+                    </form>
+            <?php } ?>
         </div>
     </div>
 </body>
