@@ -25,15 +25,16 @@ function generate_questions(int $count = 10): array
         // Add addends together to determine correct answer
         $correctAnswer = $leftAddend + $rightAddend;
 
-        // Determine how much to add to answer to generate first incorrect answer
-        $incorrectnessAddend = random_int(1, 10);
+        // Add/subtract random value to/from correct answer
+        $firstIncorrectAnswer = $correctAnswer + random_int(-10, 10);
         
-        // Determine how much to subtract to answer to generate second incorrect answer
-        $incorrectnessSubtrahend = random_int(1, 10);
+        // Declare variable to hold second incorrect answer
+        $secondIncorrectAnswer = 0;
 
-        // Calculate incorrect answers
-        $firstIncorrectAnswer = $correctAnswer + $incorrectnessAddend;
-        $secondIncorrectAnswer = $correctAnswer - $incorrectnessSubtrahend;
+        // Generate another random incorrect value, ensuring it is different from the first one
+        do {
+            $secondIncorrectAnswer = $correctAnswer + random_int(-10, 10);
+        } while ($secondIncorrectAnswer === $firstIncorrectAnswer);
 
         // Add question to question bank
         $questions[] = [
