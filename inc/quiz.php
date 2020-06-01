@@ -30,15 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($userAnswer === $questions[$prevIndex]["correctAnswer"]) {
         // Set toast to congratulatory message
         $toast = "Correct!";
-
-        // Increment session variable holding number of correct answers
-        $_SESSION["total_correct"]++;
     } else {
         // If not,
 
         // Set toast to bummer message
         $toast = "Unfortunately, that answer was incorrect.";
     }
+
+    // In either case, store answer for later
+    $_SESSION["user_answers"][$prevIndex] = $userAnswer;
 }
 
 // If we haven't set a session variable for determining which indices of questions we have already asked,
@@ -52,6 +52,12 @@ if (!isset($_SESSION["used_indices"])) {
 
 // If we have displayed all the questions,
 if (count($_SESSION["used_indices"]) === $totalQuestions) {
+    // Determine total number of correct answers
+    $totalCorrect = count(array_filter($_SESSION["used_indices"], function ($index) use ($questions) {
+        // Filter out questions that the user did not respond to correctly
+        return $_SESSION["user_answers"][$index] === $questions[$index]["correctAnswer"];
+    }));
+
     // Clear session data
     session_destroy();
 
@@ -65,8 +71,8 @@ if (count($_SESSION["used_indices"]) === $totalQuestions) {
 
     // If we are on the first question,
     if (count($_SESSION["used_indices"]) === 0) {
-        // Initialize session variable for the total number of correct answers to 0
-        $_SESSION["total_correct"] = 0;
+        // Initialize session variable for the store the user's answers
+        $_SESSION["user_answers"] = [];
 
         // Set toast variable to empty string
         $toast = "";

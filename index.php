@@ -19,7 +19,7 @@ include "inc/quiz.php";
             <?php } ?>
             <?php if ($showScore) { ?>
                 <p class="quiz score">
-                    Your final score is <?= $_SESSION["total_correct"] ?> out of <?= $totalQuestions ?>.
+                    Your final score is <?= $totalCorrect ?> out of <?= $totalQuestions ?>.
                 </p>
                 <a href="index.php" class="btn">Play Again</a>
             <?php } else { ?>
