@@ -14,7 +14,9 @@ include "inc/quiz.php";
 <body>
     <div class="container">
         <div id="quiz-box">
-            <?php var_dump($toast); ?>
+            <?php if ($toast !== "") { ?>
+                <p class="toast"><?= $toast ?></p>
+            <?php } ?>
             <?php if ($showScore) { ?>
                 <!-- TODO: Show score page -->
             <?php } else { ?>
