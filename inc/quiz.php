@@ -58,6 +58,10 @@ if (count($_SESSION["used_indices"]) === $totalQuestions) {
         return $_SESSION["user_answers"][$index] === $questions[$index]["correctAnswer"];
     }));
 
+    // Store needed session variables so that we may still access them after destroying the session
+    $usedIndices = $_SESSION["used_indices"];
+    $userAnswers = $_SESSION["user_answers"];
+
     // Clear session data
     session_destroy();
 

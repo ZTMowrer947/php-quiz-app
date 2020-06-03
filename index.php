@@ -20,6 +20,32 @@ include "inc/quiz.php";
             <?php if ($showScore) { ?>
                 <p class="quiz score">
                     Your final score is <?= $totalCorrect ?> out of <?= $totalQuestions ?>.
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Correct answer</th>
+                                <th>Your answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Display each question with its correct answer and what the user answered -->
+                            <?php foreach ($usedIndices as $index) { ?>
+                                <?php
+                                // Store current question for easy use
+                                $currentQuestion = $questions[$index];
+                                ?>
+
+                                <tr>
+                                    <td>What is <?= $currentQuestion["leftAdder"] ?> + <?= $currentQuestion["rightAdder"] ?>?</td>
+                                    <td><?= $currentQuestion["correctAnswer"] ?></td>
+                                    <td class="<?= $userAnswers[$index] === $currentQuestion["correctAnswer"] ? "correct" : "incorrect" ?>">
+                                        <?= $userAnswers[$index] ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </p>
                 <a href="index.php" class="btn">Play Again</a>
             <?php } else { ?>
