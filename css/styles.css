@@ -2,7 +2,7 @@
 
 body {
   font-family: "Playfair Display", serif;
-  background: rgb(64, 32, 192);
+  background: rgb(96, 128, 216);
   color: whitesmoke;
 }
 
@@ -55,7 +55,7 @@ body {
   bottom: 150px;
   border-radius: 4px;
   border: 2px solid whitesmoke;
-  background: rgb(64, 32, 192);
+  background: rgb(96, 128, 216);
   color: whitesmoke;
   padding: 15px;
   margin: 10px;
@@ -63,7 +63,7 @@ body {
   text-decoration: none;
 }
 .btn:hover {
-  background-color: rgb(96, 64, 218);
+  background-color: rgb(128, 192, 255);
 }
 
 .btn:focus {
@@ -91,5 +91,5 @@ tr {
 }
 
 .correct {
-  color: green;
+  color: darkgreen;
 }
