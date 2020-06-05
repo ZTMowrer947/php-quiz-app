@@ -13,6 +13,9 @@ function generate_questions(int $count = 10): array
         $count = 10;
     }
 
+    // Generate range for delta values to select from
+    $incorrectnessDeltas = array_merge(range(-10, -1), range(1, 10));
+
     // Initialize question array
     $questions = [];
 
@@ -25,19 +28,12 @@ function generate_questions(int $count = 10): array
         // Add addends together to determine correct answer
         $correctAnswer = $leftAddend + $rightAddend;
 
-        // Declare variables to hold incorrect answers
-        $firstIncorrectAnswer = 0;
-        $secondIncorrectAnswer = 0;
+        // Select two random delta indices
+        $deltaIndices = array_rand($incorrectnessDeltas, 2); 
 
-        // Generate first incorrect answer, ensuring it is not the same as the correct answer
-        do {
-            $firstIncorrectAnswer = $correctAnswer + random_int(-10, 10);
-        } while ($firstIncorrectAnswer === $correctAnswer);
-
-        // Generate another random incorrect value, ensuring it is different from the first one
-        do {
-            $secondIncorrectAnswer = $correctAnswer + random_int(-10, 10);
-        } while ($secondIncorrectAnswer === $firstIncorrectAnswer);
+        // Generate two incorrect answers using selected deltas
+        $firstIncorrectAnswer = $correctAnswer + $incorrectnessDeltas[$deltaIndices[0]];
+        $secondIncorrectAnswer = $correctAnswer + $incorrectnessDeltas[$deltaIndices[1]];
 
         // Add question to question bank
         $questions[] = [
